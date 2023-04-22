@@ -31,6 +31,10 @@ class CommonModule:
         company_dtls = pd.DataFrame({'Date': [datetime.now()]})     # creating a df with current date column
         company_dtls['Date'] = company_dtls['Date'].dt.strftime('%Y-%m-%d')      # Updating the format of the Date column
         company_dtls['Date'] = pd.to_datetime(company_dtls['Date'])    # casting the Date column to datetime
+
+        company_dtls = pd.DataFrame({'Date': [datetime.now().strftime("%Y-%m-%d")]})
+        company_dtls['Date'] = pd.to_datetime(company_dtls['Date'])
+
         for cmpy in cmpy_names:     # iterating through the list of companies
             cmp_df = yf.download(tickers=cmpy, period='100d', interval='1d')[['Close', 'Volume']].add_prefix(cmpy+"_")     # downloading the stock details of the company for 100 days
             if company_dtls.columns.size == 1:     # checking if the df has 1 column

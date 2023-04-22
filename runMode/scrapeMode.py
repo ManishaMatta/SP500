@@ -25,8 +25,8 @@ def run(sp_cmpy=''):
     print("Total Record Count: ", len(sp_df11), " * ", len(sp_df11.columns))
 
     print("**************************** DataSet 1-2 ****************************")
-    dts = CommonModule.date_generator("%-Y%m%d", 1)
-    dte = CommonModule.date_generator("%-Y%m%d", 21)
+    dts = CommonModule.date_generator("%Y%m%d", 1)
+    dte = CommonModule.date_generator("%Y%m%d", 21)
     sp_df12 = CommonModule.ds_api('https://markets.businessinsider.com/Ajax/Chart_GetChartData?instrumentType=Index&tkData=1059,998434,1059,333&from=%s&to=%s' % (dte[0], dts[0]), mode='s')
     sp_df12['Date'] = sp_df12['Date'].str[:10]
     sp_df12 = sp_df12.set_index('Date')
