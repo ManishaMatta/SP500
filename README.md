@@ -69,7 +69,7 @@ Packages to be installed:
 
 ### V. Code Execution
 
-The code can be run in three modes: default, scrape and static. 
+The code can be run in three modes: default, scrape and static. Please execute the commands from the module directory
 The analysis charts pop-up after the code execution, and are also save in the **../resource/output/<mode>** directory.
 Currently, the code will finish execution only after manual closing of the graphs. This is because the code is in debug state. The pop-up will be disabled after the code completion
 
@@ -79,7 +79,7 @@ Currently, the code will finish execution only after manual closing of the graph
   This mode would execute the datasets from sample data stored as csv files from the above sources to get partial analysis of the data.
 
   The static mode can be executed in 1 way:
-    1. No Parameters : `python $(pwd)/snp500.py --static`
+    1. No Parameters : `python snp500.py --static`
 
   Execution Time : ~5 seconds
 
@@ -88,10 +88,13 @@ Currently, the code will finish execution only after manual closing of the graph
   This mode would execute the complete datasets from the above-mentioned data sources for limited data to get partial analysis of the data.
   
   The scrape mode can be executed in 3 different ways:
-   1. No Parameters : `python $(pwd)/snp500.py --scrape`
-   2. Classified Keywords : `python $(pwd)/snp500.py --scrape faang` 
-       [ faang => Meta (META) (formerly known as Facebook), Amazon (AMZN), Apple (AAPL), Netflix (NFLX); and Alphabet (GOOG) (formerly known as Google) ]
-   3. Specific S&P Companies : `python $(pwd)/snp500.py --scrape <cmpy_1,cmpy_2>`
+   1. No Parameters : `python snp500.py --scrape`
+   2. Classified Keywords : `python snp500.py --scrape faang` 
+       **Only Amazon, Apple, Alphabet/Google will be displayed as we are scraping only one page**
+       [ faang => Meta (META) (formerly known as Facebook), Amazon (AMZN), Apple (AAPL), Netflix (NFLX); and Alphabet (GOOG) (formerly known as Google) ] 
+        
+   3. Specific S&P Companies : `python snp500.py --scrape <cmpy_1,cmpy_2>`
+        [Ex. 3M,AbbVie,Accenture,Adobe]
 
   Execution Time : ~11 seconds
 
@@ -100,10 +103,11 @@ Currently, the code will finish execution only after manual closing of the graph
   This mode would execute the complete datasets from the above-mentioned data sources for complete analysis of the data.
 
   The default mode can be executed in 3 different ways:
-    1. No Parameters : `python $(pwd)/snp500.py`
-    2. Classified Keywords : `python $(pwd)/snp500.py faang` 
+    1. No Parameters : `python snp500.py`
+    2. Classified Keywords : `python snp500.py faang` 
         [ faang => Meta (META) (formerly known as Facebook), Amazon (AMZN), Apple (AAPL), Netflix (NFLX); and Alphabet (GOOG) (formerly known as Google) ]
-    3. Specific S&P Companies : `python $(pwd)/snp500.py <cmpy_1,cmpy_2>`
+    3. Specific S&P Companies : `python snp500.py <cmpy_1,cmpy_2>`
+       [Ex. 3M,AbbVie,Accenture,Adobe]
 
   Execution Time : ~900 seconds
 

@@ -28,17 +28,12 @@ class CommonModule:
     # function to extract company stock data from yahoo finance
     def company_yahoo_hist(cmpy_names):
         print("Fetching data from yahoo finances for %s ... " % cmpy_names)
-        company_dtls = pd.DataFrame({'Date': [datetime.now()]})     # creating a df with current date column
-        company_dtls['Date'] = company_dtls['Date'].dt.strftime('%Y-%m-%d')      # Updating the format of the Date column
-        company_dtls['Date'] = pd.to_datetime(company_dtls['Date'])    # casting the Date column to datetime
-
-        company_dtls = pd.DataFrame({'Date': [datetime.now().strftime("%Y-%m-%d")]})
-        company_dtls['Date'] = pd.to_datetime(company_dtls['Date'])
-
+        company_dtls = pd.DataFrame({'Date': [datetime.now().strftime("%Y-%m-%d")]})    # creating a df with current date column
+        company_dtls['Date'] = pd.to_datetime(company_dtls['Date'])     # casting the Date column to datetime
         for cmpy in cmpy_names:     # iterating through the list of companies
             cmp_df = yf.download(tickers=cmpy, period='100d', interval='1d')[['Close', 'Volume']].add_prefix(cmpy+"_")     # downloading the stock details of the company for 100 days
             if company_dtls.columns.size == 1:     # checking if the df has 1 column
-                company_dtls = company_dtls.merge(cmp_df, on='Date', how='outer').set_index('Date')     #
+                company_dtls = company_dtls.merge(cmp_df, on='Date', how='outer').set_index('Date')     # merging the df into the combined datafraem
             else:
                 company_dtls = company_dtls.merge(cmp_df, on='Date', how='outer')     #
         return company_dtls     #

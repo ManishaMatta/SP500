@@ -48,7 +48,7 @@ def run():
     # ProcessModule.process_df2(sp_df11)
     # ProcessModule.process_all(sp_df11)
 
-# start_time = datetime.now().strftime("%-Y%m%d%H%M%S")
+# start_time = datetime.now().strftime("%Y%m%d%H%M%S")
 # run()
-# end_time = datetime.now().strftime("%-Y%m%d%H%M%S")
+# end_time = datetime.now().strftime("%Y%m%d%H%M%S")
 # print("run time : ", (int(end_time)-int(start_time)))     # 6 secs

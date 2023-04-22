@@ -39,7 +39,7 @@ def run(sp_cmpy=''):
 
     print("**************************** DataSet 2 ****************************")
     print("Please uncomment them while execution as the api access is limited for a month")
-    # dt2 = CommonModule.date_generator("%-Y-%m-%d", 10)
+    # dt2 = CommonModule.date_generator("%Y-%m-%d", 10)
     # sp_df2 = CommonModule.ds_api('http://api.mediastack.com/v1/news?access_key=92f63d9d5b9f1ead582b49351a664e71&categories=business&keywords=S&P 500&countries=us&languages=en&date=%s,%s&limit=100' % (dt2[0], dt2[1]), json_path='data')
     # sp_df2['Date'] = sp_df2['published_at'].str[:10]
     # sp_df2 = sp_df2.set_index('Date')
@@ -72,7 +72,7 @@ def run(sp_cmpy=''):
     # ProcessModule.process_all(sp_df11)
 
 
-# start_time = datetime.now().strftime("%-Y%m%d%H%M%S")
+# start_time = datetime.now().strftime("%Y%m%d%H%M%S")
 # run()
-# end_time = datetime.now().strftime("%-Y%m%d%H%M%S")
+# end_time = datetime.now().strftime("%Y%m%d%H%M%S")
 # print("run time : ", (int(end_time)-int(start_time)))    # 900 secs
