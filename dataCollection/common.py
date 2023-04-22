@@ -28,72 +28,72 @@ class CommonModule:
     # function to extract company stock data from yahoo finance
     def company_yahoo_hist(cmpy_names):
         print("Fetching data from yahoo finances for %s ... " % cmpy_names)
-        company_dtls = pd.DataFrame({'Date': [datetime.now().strftime("%Y-%m-%d")]})    # creating a df with current date column
+        company_dtls = pd.DataFrame({'Date': [datetime.now().strftime("%Y-%m-%d")]})    # creating a dataframe with current date column
         company_dtls['Date'] = pd.to_datetime(company_dtls['Date'])     # casting the Date column to datetime
         for cmpy in cmpy_names:     # iterating through the list of companies
             cmp_df = yf.download(tickers=cmpy, period='100d', interval='1d')[['Close', 'Volume']].add_prefix(cmpy+"_")     # downloading the stock details of the company for 100 days
             if company_dtls.columns.size == 1:     # checking if the df has 1 column
-                company_dtls = company_dtls.merge(cmp_df, on='Date', how='outer').set_index('Date')     # merging the df into the combined datafraem
+                company_dtls = company_dtls.merge(cmp_df, on='Date', how='outer').set_index('Date')     # merging the dataframe into the combined dataframe for 1st run
             else:
-                company_dtls = company_dtls.merge(cmp_df, on='Date', how='outer')     #
-        return company_dtls     #
+                company_dtls = company_dtls.merge(cmp_df, on='Date', how='outer')     # merging the dataframe into the combined dataframe
+        return company_dtls     # returning the combined dataframe
 
     @staticmethod
-    #
+    # function to scrap a webpage when the link is provided
     def ds_wscrap(link, href, mode='d', cmpy_names=''):
-        print("Fetching data by Web Scraping from %s ... " % link)     #
-        if cmpy_names is None:     #
-            cmpy_names = []     #
-        ds1_link = link + href     #
-        sp_company_dtls = []     #
-        cmpy_df = pd.DataFrame()     #
-        sp_res = requests.get(ds1_link)     #
-        if sp_res.status_code == 200:     #
-            sp_parser = BeautifulSoup(sp_res.content, 'html.parser')     #
-            for sp_cmpy in sp_parser.findAll("div", {"class": "graviton"}):     #
+        print("Fetching data by Web Scraping from %s ... " % link)
+        if cmpy_names is None:     # if cmpy_names is None set as empty list
+            cmpy_names = []
+        ds1_link = link + href     # appending the link with href for scraping the data
+        sp_company_dtls = []     # initializing the output list
+        cmpy_df = pd.DataFrame()     # initializing the output dataframe
+        sp_res = requests.get(ds1_link)     # requesting the data from weblink
+        if sp_res.status_code == 200:     # checking if the request is valid
+            sp_parser = BeautifulSoup(sp_res.content, 'html.parser')     # parsing the returned HTML with BeautifulSoup
+            for sp_cmpy in sp_parser.findAll("div", {"class": "graviton"}):     # iterating through div tag with class:graviton
                 try:
-                    if sp_cmpy.find("h2").get_text().strip() == "Realtime Prices for S&P 500 Stocks":     #
-                        pages = sp_cmpy.find("div", {"class": "margin-top--small"})     #
-                        total_pg = 0 if mode == 's' else pages.find_all("li", {"class": "pagination__item"})[-1].get("data-pagination-page")     #
-                        for i in range(1, int(total_pg) + 2):     #
-                            print("Extracting ", ds1_link + "?p=%s&" % i, "...")     #
-                            sck_dtls = CommonModule.stock_details(link, ds1_link + "?p=%s&" % i, cmpy_names)     #
-                            sp_company_dtls = sp_company_dtls + sck_dtls[0]     #
-                            CommonModule.cmpy_short_names += sck_dtls[1]     #
+                    if sp_cmpy.find("h2").get_text().strip() == "Realtime Prices for S&P 500 Stocks":     # checking if the header value has the mentioned string
+                        pages = sp_cmpy.find("div", {"class": "margin-top--small"})     # checking the number of pages in the table
+                        total_pg = 0 if mode == 's' else pages.find_all("li", {"class": "pagination__item"})[-1].get("data-pagination-page")     # assigning the max browsing pages based on run mode
+                        for i in range(1, int(total_pg) + 2):     # iterating through the pages
+                            print("Extracting ", ds1_link + "?p=%s&" % i, "...")
+                            sck_dtls = CommonModule.stock_details(link, ds1_link + "?p=%s&" % i, cmpy_names)     # extracting the stock details in the page
+                            sp_company_dtls = sp_company_dtls + sck_dtls[0]     # Appending the details to the output list
+                            CommonModule.cmpy_short_names += sck_dtls[1]     # capturing the company short name
                 except:
                     continue
-            cmpy_df = CommonModule.company_yahoo_hist(CommonModule.cmpy_short_names[:10])     #
-            if len(CommonModule.cmpy_short_names) > 10:     #
+            cmpy_df = CommonModule.company_yahoo_hist(CommonModule.cmpy_short_names[:10])     # downloading the first 10 company details from yahoo finances
+            if len(CommonModule.cmpy_short_names) > 10:     # Adding a note if teh company list is more than 10 as we are trimming the dataset
                 print("Filtering only the first 10 companies to avoid cramped data for analysis, Please repeat this step to get all data")
-        return sp_company_dtls, cmpy_df     #
+        return sp_company_dtls, cmpy_df     # returning the output from scraping and yahoo finances regarding the index value of S&P 500
 
     @staticmethod
-    #
+    # function to retrieve the individual company stock details
     def stock_details(link, ds_link, cmpy_names):
-        sp_res = requests.get(ds_link)     #
-        sp_company = []     #
-        cmpy_short_names = []     #
-        if sp_res.status_code == 200:     #
-            sp_parser = BeautifulSoup(sp_res.content, 'html.parser')     #
-            for sp_cmpy in sp_parser.findAll("div", {"class": "graviton"}):     #
+        sp_res = requests.get(ds_link)     # requesting the data from weblink
+        sp_company = []     # initializing the output list for stock details
+        cmpy_short_names = []     # initializing the output list for company name
+        if sp_res.status_code == 200:     # checking if the request is valid
+            sp_parser = BeautifulSoup(sp_res.content, 'html.parser')     # parsing the returned HTML with BeautifulSoup
+            for sp_cmpy in sp_parser.findAll("div", {"class": "graviton"}):     # iterating through tag div with class:graviton
                 try:
-                    valid_header = sp_cmpy.find("h2").get_text().strip()     #
+                    valid_header = sp_cmpy.find("h2").get_text().strip()     # extracting the header value
                 except:
-                    continue     #
-                if valid_header == "Realtime Prices for S&P 500 Stocks":     #
-                    for line in sp_cmpy.find_all("tr"):     #
+                    continue
+                if valid_header == "Realtime Prices for S&P 500 Stocks":     # checking if the header in the string
+                    for line in sp_cmpy.find_all("tr"):     # finding the table tags
                         try:
-                            cname = line.find("a").get_text().strip()     #
+                            cname = line.find("a").get_text().strip()     # getting the text data for a tag in the table
                         except:
-                            continue     #
-                        if (len(cmpy_names) == 0) or (cname.lower().strip() in [c.lower().strip() for c in cmpy_names]):     #
-                            values = ()     #
-                            if line.find("td", {"class": "table__td"}):     #
-                                for val in line.find_all("td", {"class": "table__td text-right"}):     #
-                                    values += (val.get_text().strip(),)     #
-                                c_snapshot = CommonModule.company_details(link, line.find("a").get("href").strip())     #
-                                sp_company.append((cname, *values, *c_snapshot))     #
-                                cmpy_short_names.append(c_snapshot[0])     #
+                            continue
+                        if (len(cmpy_names) == 0) or (cname.lower().strip() in [c.lower().strip() for c in cmpy_names]):     # if the company name is passed in the list
+                            values = ()     # initializing a tuple for storing each stock detail
+                            if line.find("td", {"class": "table__td"}):     # identifying if there are rows in the table
+                                for val in line.find_all("td", {"class": "table__td text-right"}):     # if the table has rows
+                                    values += (val.get_text().strip(),)     # updating the tuple with table content
+                                c_snapshot = CommonModule.company_details(link, line.find("a").get("href").strip())     # capturing the forcast details of the company
+                                sp_company.append((cname, *values, *c_snapshot))     # combining all the retrieved data
+                                cmpy_short_names.append(c_snapshot[0])     # appending the company short name to the list
                             else:
                                 continue
                         else:
@@ -102,45 +102,44 @@ class CommonModule:
                     continue
         else:
             print("error response while retrieving web page")
-        return sp_company, cmpy_short_names     #
+        return sp_company, cmpy_short_names     # returning the company details with the company name
 
     @staticmethod
-    #
+    # function to extract the forcast details of the company
     def company_details(link, href):
-        cmpy_dtls = ()     #
-        snapshot_dtls = ["Volume", "B", "M", "Dividend", "Yield", "P/E", "Free", "EPS", "Book", "Cash"]     #
+        cmpy_dtls = ()     # initializing an output tuple to capture the forcast values
+        snapshot_dtls = ["Volume", "B", "M", "Dividend", "Yield", "P/E", "Free", "EPS", "Book", "Cash"]     # fields to be extracted from the webpage
         try:
-            req = requests.get(link + href)     #
-            if req.status_code == 200:     #
-                parser = BeautifulSoup(req.content, 'html.parser')     #
-                cmpy_short_name = parser.find("span", {"class": "price-section__category"}).find("span").get_text()[2:]     #
-                cmpy_dtls += (cmpy_short_name,)     #
-                if parser.find("div", {"class": "snapshot"}):     #
-                    sdict = {}     #
-                    for s in parser.findAll("div", {"class": "snapshot__data-item"}):     #
-                        ss = s.getText().strip().split()     #
-                        sdict[ss[1]] = ss[0]     #
-                    for s in snapshot_dtls:     #
-                        cmpy_dtls += (sdict.get(s, ''),)     #
+            req = requests.get(link + href)     # requesting the data from weblink
+            if req.status_code == 200:     # checking if the request is valid
+                parser = BeautifulSoup(req.content, 'html.parser')     # parsing the returned HTML with BeautifulSoup
+                cmpy_short_name = parser.find("span", {"class": "price-section__category"}).find("span").get_text()[2:]     # retrieving the company name
+                cmpy_dtls += (cmpy_short_name,)     # Updating the company details with the name
+                if parser.find("div", {"class": "snapshot"}):     # identifying the div tag with class as snapshot
+                    sdict = {}
+                    for s in parser.findAll("div", {"class": "snapshot__data-item"}):     # identifying the div tag with class as snapshot__data-item
+                        ss = s.getText().strip().split()     # splitting the data to get its value
+                        sdict[ss[1]] = ss[0]     # adding its details to the dict
+                    for s in snapshot_dtls:     # iterating through the dict to get the specific values
+                        cmpy_dtls += (sdict.get(s, ''),)     # updating the details to the output tuple
                 article_tag = parser.find("h3", {"class": "instrument-stories__title"}).find("a")     #
-                article = article_tag.getText().strip() + " : " + link + article_tag.get("href").strip()     #
-                cmpy_dtls += (article,)     #
-                # forecast
-                for fcast in parser.findAll("details", {"class": "fontsize-12 border-white margin-top--smaller padding-left--smaller"}):     #
-                    cmpy_dtls += (fcast.get_text().strip().split("\n")[-1].strip(),)     #
+                article = article_tag.getText().strip() + " : " + link + article_tag.get("href").strip()     # identifying the header tag with class as instrument-stories__title
+                cmpy_dtls += (article,)     # updating with the article details
+                for fcast in parser.findAll("details", {"class": "fontsize-12 border-white margin-top--smaller padding-left--smaller"}):     # capturing the forcast details mentioned by analysts
+                    cmpy_dtls += (fcast.get_text().strip().split("\n")[-1].strip(),)     # appending the details into the tuple
         except:
             print("Error accessing specific cmpy page")
-        return cmpy_dtls     #
+        return cmpy_dtls     # returning the output tuple with the company related data
 
     @staticmethod
-    #
-    def csv_writer(dataframe, filename):     #
+    # function to write a dataframe into a csv file mentioned
+    def csv_writer(dataframe, filename):
         # file_path = os.getcwd()+"/resources/"+filename
-        dataframe.to_csv(filename)  # index=False     #
+        dataframe.to_csv(filename)  # index=False     # saving the dataframe as csv
 
     @staticmethod
-    #
+    # function to read a csv file as a dataframe
     def csv_reader(filename):
         # file_path = os.getcwd()+"/resources/"+filename
-        dataframe = pd.read_csv(filename)     #
+        dataframe = pd.read_csv(filename)     # reading the csv as dataframe
         return dataframe

@@ -90,7 +90,7 @@ Currently, the code will finish execution only after manual closing of the graph
   The scrape mode can be executed in 3 different ways:
    1. No Parameters : `python snp500.py --scrape`
    2. Classified Keywords : `python snp500.py --scrape faang` 
-       **Only Amazon, Apple, Alphabet/Google will be displayed as we are scraping only one page**
+       **Only Amazon, Apple, Alphabet/Google will be displayed as we are scraping only one page in SCRAPE_MODE**
        [ faang => Meta (META) (formerly known as Facebook), Amazon (AMZN), Apple (AAPL), Netflix (NFLX); and Alphabet (GOOG) (formerly known as Google) ] 
         
    3. Specific S&P Companies : `python snp500.py --scrape <cmpy_1,cmpy_2>`
@@ -114,24 +114,26 @@ Currently, the code will finish execution only after manual closing of the graph
 
 ### VI. Maintenance
 
-* Update in the HTML page used for web scraping : We will have to keep in track and update the codebase in case of any changes in the page structure.
-* API JSON schema changes : the code is designed to be forward compatible hence, we might have to test the code in case of any updates in the schema.
-* Common codebase is used for all modes, hence any future modification in the analysis. We might have to alter only one place in the code base.
+These are the few aspects of the codebase that will require maintenance:
+
+* Data analysis changes: We have to update the codebase in a single location if there are any future requirements for all the modes, the modular structure of the codebase makes it easier to update.
+* Update in the HTML page used for web scraping: We will have to keep in track and update the codebase in case of any changes in the page structure.
+* API JSON schema changes: the code is designed to be forward compatible hence, we might have to test the code in case of any updates in the schema. 
+* Updating the datasets to keep track of contemporaneous data.
 * Adding the comments on all function for understanding the logic used in the project.
-* Updating the datasets fto keep track with the current epicenter of data.
+* If any webpage is under maintenance, I'm throwing an exception message with the current issue.
 
 ### VII. Extensibility
 
-As this is the first MVP version of the code. The scope of improvement in the project could be in,
+As this is the first MVP(Minimum Viable Product) version of the code. The scope of improvement in the project could be in the following areas:
+
 * Updating the dataset-3 with more general and current data.
-* Requesting access for scraping U.S. Securities and Exchange Commission website.
+* Requesting access for scraping U.S. Securities and Exchange Commission website for financial data.
 * Maintaining history of the data processed for better training set.
 * Scheduling the module for more consistent data testing and evaluation.
 * API call for dataset-2 is possible only 100 times a month, Requesting access for frequent data pulls for analysis.
-* Adding a constant and parameter file for generalizing the codebase
+* Adding constant file and parameter file for generalizing the codebase
 
 ### VIII. Conclusion
 
-Overall, the S&P 500 data analysis project is an undertaking that provides a deeper understanding of the stock market and the economy as a whole. It offers insights into the past and present performance of the stock market and provides a framework for making informed investment decisions in the future.
-
-
+Overall, the S&P 500 data analysis project is an undertaking that provides a deeper understanding of the stock market and the economy as a whole. It offers insights into the past and present performance of the stock market and provides a framework for making informed investment decisions for the future.
