@@ -2,29 +2,29 @@ import sys
 from runMode import defaultMode, staticMode, scrapeMode
 
 
-# defining the main function
+# defining the main function for S&P 500 project
 def main():
-    args = sys.argv[1:]
     try:
-        if len(args) >= 1:
-            if args[0] == '--static':
+        args = sys.argv[1:]     # selecting parameters after the execution file name
+        if len(args) >= 1:     # if number of parameters > 1
+            if args[0] == '--static':     # checking if the 2nd param is static
                 print("------------ STATIC MODE ------------")
-                staticMode.run()
-            elif args[0] == '--scrape':
+                staticMode.run()     # executing the static flow
+            elif args[0] == '--scrape':     # checking if the 2nd parameter is scrape
                 print("------------ SCRAPE MODE ------------")
-                if len(args) > 1:
+                if len(args) > 1:     # if it has more parameters executing scrape flow with cmpy dtls
                     scrapeMode.run(args[1])     # cmpy1,cmpy2,cmpy3...
                 else:
-                    scrapeMode.run()
-            else:
+                    scrapeMode.run()     # executing the scrape flow
+            else:     # else executing default flow
                 print("------------ DEFAULT MODE ------------")
                 defaultMode.run(args[0])    # cmpy1,cmpy2,cmpy3...
         else:
             print("------------ DEFAULT MODE ------------")
-            defaultMode.run()
+            defaultMode.run()     # else executing default flow
     except():
-        print("Error while retrieving parameters and executing the codebase")
+        print("Error while retrieving parameters and executing the codebase")     # command to print if any exceptions occur in the codebase
 
 
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__":     # start of the module
+    main()     # calling the main function

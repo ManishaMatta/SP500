@@ -8,7 +8,7 @@ The data is divided into multiple datasets to infer different correlation and pr
 
 **[GitHub link](https://github.com/ManishaMatta/SP500/tree/develop)**
 
-The codebase is present under the SP500 directory
+The codebase is present under the **SP500-develop** directory
    * main class -> ./snp500.py [start point of the project]
    * execution modes modules
      * static mode -> ./runMode/staticMode.py [code for execution with static mode]
@@ -37,6 +37,8 @@ run the code. To install above packages use the following command:
 './requirements.txt' -> file has a list of all the necessary packages required to run this code
 
 #### Packages Installed
+
+Python Version : 3.11.1
 
 Packages to be installed:
 1. os
@@ -70,35 +72,41 @@ Packages to be installed:
 The code can be run in three modes: default, scrape and static. 
 The analysis charts pop-up after the code execution, and are also save in the **../resource/output/<mode>** directory.
 Currently, the code will finish execution only after manual closing of the graphs. This is because the code is in debug state. The pop-up will be disabled after the code completion
+
 **NOTE**: Please enlarge the charts for formatted display.
 
-* Default Mode: 
-  This mode would execute the complete datasets from the above-mentioned data sources for complete analysis of the data.
-  
-  The default mode can be executed in 3 different ways:
-  1. No Parameters : `python $(pwd)/snp500.py`
-  2. Classified Keywords : `python $(pwd)/snp500.py faang` [faang => Meta (META) (formerly known as Facebook), Amazon (AMZN), Apple (AAPL), Netflix (NFLX); and Alphabet (GOOG) (formerly known as Google)]
-  3. Specific S&P Companies : `python $(pwd)/snp500.py <cmpy_1,cmpy_2>`
+* Static Mode:
+  This mode would execute the datasets from sample data stored as csv files from the above sources to get partial analysis of the data.
 
-  Execution Time : ~900 seconds
+  The static mode can be executed in 1 way:
+    1. No Parameters : `python $(pwd)/snp500.py --static`
+
+  Execution Time : ~5 seconds
+
 
 * Scrape Mode:
   This mode would execute the complete datasets from the above-mentioned data sources for limited data to get partial analysis of the data.
   
   The scrape mode can be executed in 3 different ways:
    1. No Parameters : `python $(pwd)/snp500.py --scrape`
-   2. Classified Keywords : `python $(pwd)/snp500.py --scrape faang` [faang => Meta (META) (formerly known as Facebook), Amazon (AMZN), Apple (AAPL), Netflix (NFLX); and Alphabet (GOOG) (formerly known as Google)]
+   2. Classified Keywords : `python $(pwd)/snp500.py --scrape faang` 
+       [ faang => Meta (META) (formerly known as Facebook), Amazon (AMZN), Apple (AAPL), Netflix (NFLX); and Alphabet (GOOG) (formerly known as Google) ]
    3. Specific S&P Companies : `python $(pwd)/snp500.py --scrape <cmpy_1,cmpy_2>`
 
   Execution Time : ~11 seconds
 
-* Static Mode:
-  This mode would execute the datasets from sample data stored as csv files from the above sources to get partial analysis of the data.
-  
-  The static mode can be executed in 1 way:
-   1. No Parameters : `python $(pwd)/snp500.py --static`
 
-  Execution Time : ~5 seconds
+* Default Mode:
+  This mode would execute the complete datasets from the above-mentioned data sources for complete analysis of the data.
+
+  The default mode can be executed in 3 different ways:
+    1. No Parameters : `python $(pwd)/snp500.py`
+    2. Classified Keywords : `python $(pwd)/snp500.py faang` 
+        [ faang => Meta (META) (formerly known as Facebook), Amazon (AMZN), Apple (AAPL), Netflix (NFLX); and Alphabet (GOOG) (formerly known as Google) ]
+    3. Specific S&P Companies : `python $(pwd)/snp500.py <cmpy_1,cmpy_2>`
+
+  Execution Time : ~900 seconds
+
 
 ### VI. Maintenance
 
