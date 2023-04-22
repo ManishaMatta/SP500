@@ -8,7 +8,7 @@ The data is divided into multiple datasets to infer different correlation and pr
 
 **[GitHub link](https://github.com/ManishaMatta/SP500/tree/develop)**
 
-The codebase is present under the **SP500-develop** directory
+The codebase is present under the **SP500** directory
    * main class -> ./snp500.py [start point of the project]
    * execution modes modules
      * static mode -> ./runMode/staticMode.py [code for execution with static mode]
