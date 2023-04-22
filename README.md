@@ -121,7 +121,7 @@ These are the few aspects of the codebase that will require maintenance:
 * API JSON schema changes: the code is designed to be forward compatible hence, we might have to test the code in case of any updates in the schema. 
 * Updating the datasets to keep track of contemporaneous data.
 * Adding the comments on all function for understanding the logic used in the project.
-* If any webpage is under maintenance, I'm throwing an exception message with the current issue.
+* If any webpage is under maintenance [statuscode=400], I'm throwing an exception message with the current issue.
 
 ### VII. Extensibility
 
