@@ -1,9 +1,8 @@
-from datetime import timedelta, datetime
-
 import requests
 import pandas as pd
-from bs4 import BeautifulSoup
 import yfinance as yf
+from bs4 import BeautifulSoup
+from datetime import timedelta, datetime
 
 
 class CommonModule:
@@ -17,6 +16,7 @@ class CommonModule:
 
     @staticmethod
     def ds_api(web_link, json_path='', mode='d'):
+        print("Fetching data from <%s> API ... " % web_link)
         req = requests.get(web_link)
         if req.status_code == 200:
             df = pd.DataFrame(req.json()) if len(json_path) == 0 else pd.DataFrame(req.json()[json_path])
@@ -24,6 +24,7 @@ class CommonModule:
 
     @staticmethod
     def company_yahoo_hist(cmpy_names):
+        print("Fetching data from yahoo finances for %s ... " % cmpy_names)
         company_dtls = pd.DataFrame({'Date': [datetime.now().strftime("%-Y-%m-%d")]})
         company_dtls['Date'] = pd.to_datetime(company_dtls['Date'])
         for cmpy in cmpy_names:
@@ -36,6 +37,7 @@ class CommonModule:
 
     @staticmethod
     def ds_wscrap(link, href, mode='d', cmpy_names=''):
+        print("Fetching data by Web Scraping from %s ... " % link)
         if cmpy_names is None:
             cmpy_names = []
         ds1_link = link + href
@@ -50,14 +52,16 @@ class CommonModule:
                         pages = sp_cmpy.find("div", {"class": "margin-top--small"})
                         total_pg = 0 if mode == 's' else pages.find_all("li", {"class": "pagination__item"})[-1].get("data-pagination-page")
                         for i in range(1, int(total_pg) + 2):
-                            print(ds1_link + "?p=%s&" % i)
+                            print("Extracting ", ds1_link + "?p=%s&" % i, "...")
                             sck_dtls = CommonModule.stock_details(link, ds1_link + "?p=%s&" % i, cmpy_names)
                             sp_company_dtls = sp_company_dtls + sck_dtls[0]
                             CommonModule.cmpy_short_names += sck_dtls[1]
                 except:
                     continue
-            if 10 >= len(CommonModule.cmpy_short_names) > 0:
-                cmpy_df = CommonModule.company_yahoo_hist(CommonModule.cmpy_short_names)
+
+            cmpy_df = CommonModule.company_yahoo_hist(CommonModule.cmpy_short_names[:10])
+            if len(CommonModule.cmpy_short_names) > 10:
+                print("Filtering only the first 10 companies to avoid cramped data for analysis, Please repeat this step to get all data")
         return sp_company_dtls, cmpy_df
 
     @staticmethod
@@ -134,5 +138,3 @@ class CommonModule:
         # file_path = os.getcwd()+"/resources/"+filename
         dataframe = pd.read_csv(filename)
         return dataframe
-
-

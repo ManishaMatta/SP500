@@ -6,6 +6,8 @@
 This data science project involves collecting and analyzing historical data of S&P 500. The S&P 500 Index is a stock market index that tracks the performance of the 500 largest companies listed on the US stock exchange.
 The data is divided into multiple datasets to infer different correlation and prediction models for better data visibility.
 
+**[GitHub link](https://github.com/ManishaMatta/SP500/tree/develop)**
+
 The codebase is present under the SP500 directory
    * main class -> ./snp500.py [start point of the project]
    * execution modes modules
@@ -20,8 +22,12 @@ The codebase is present under the SP500 directory
      * datasets -> ./resources/dataset*.csv [datasets used for static mode]
      * outputs -> ./resources/output/<mode>/S&P_500_Analysis*.svg [analysis outputs from the codebase]
      * logs -> ./resources/logs/<mode>.txt [execution logs in each mode]
+     * pictures -> ./resources/pictures/flowchart.png [flowchart]
 
-### II. Requirements
+### II. Flow Chart
+![flowchart.png](resources%2Fpictures%2Fflowchart.png) 
+
+### III. Requirements
 
 The project must download and install the below listed modules and packages to
 run the code. To install above packages use the following command: 
@@ -44,7 +50,7 @@ Packages to be installed:
 9. tabulate
 10. BeautifulSoup
 
-### III. Data Sources
+### IV. Data Sources
 
 1. S&P 500 index values : 
       * Web Crawling/ Scraping : https://markets.businessinsider.com/index/s&p_500
@@ -59,7 +65,7 @@ Packages to be installed:
       * API GET : https://pkgstore.datahub.io/core/s-and-p-500-companies-financials/constituents-financials_json/data/ddf1c04b0ad45e44f976c1f32774ed9a/constituents-financials_json.json
       * U.S. Securities and Exchange Commission : http://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK= <cmpy_name>
 
-### IV. Code Execution
+### V. Code Execution
 
 The code can be run in three modes: default, scrape and static. 
 The analysis charts pop-up after the code execution, and are also save in the **../resource/output/<mode>** directory.
@@ -94,9 +100,6 @@ Currently, the code will finish execution only after manual closing of the graph
 
   Execution Time : ~5 seconds
 
-### V. Flow Chart
-![flowchart.png](resources%2Fpictures%2Fflowchart.png)
-
 ### VI. Maintenance
 
 * Update in the HTML page used for web scraping : We will have to keep in track and update the codebase in case of any changes in the page structure.
@@ -117,17 +120,5 @@ As this is the first MVP version of the code. The scope of improvement in the pr
 ### VIII. Conclusion
 
 Overall, the S&P 500 data analysis project is an undertaking that provides a deeper understanding of the stock market and the economy as a whole. It offers insights into the past and present performance of the stock market and provides a framework for making informed investment decisions in the future.
-
-
-Local Executions
-```
-python /Users/Manisha/Documents/github/ManishaMatta/SP500/snp500.py --static
-python /Users/Manisha/Documents/github/ManishaMatta/SP500/snp500.py --scrape
-python /Users/Manisha/Documents/github/ManishaMatta/SP500/snp500.py --scrape faang
-python /Users/Manisha/Documents/github/ManishaMatta/SP500/snp500.py --scrape 3M,AbbVie
-python /Users/Manisha/Documents/github/ManishaMatta/SP500/snp500.py
-python /Users/Manisha/Documents/github/ManishaMatta/SP500/snp500.py faang
-python /Users/Manisha/Documents/github/ManishaMatta/SP500/snp500.py 3M,AbbVie
-```
 
 

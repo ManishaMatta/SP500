@@ -1,5 +1,5 @@
 import os
-from datetime import datetime
+# from datetime import datetime
 import pandas as pd
 from dataCollection.common import CommonModule
 from dataVisualization.visualize import ProcessModule
@@ -20,31 +20,23 @@ def run(sp_cmpy=''):
 
     print("**************************** DataSet 1-1 ****************************")
     sp_val1 = CommonModule.ds_wscrap(link, '/index/s&p_500', 's', cmpy_list)
-    sp_df11 = pd.DataFrame(sp_val1[0],
-                           columns=['CompanyName', 'PreviousClose', 'LastUpdated', 'PercentChange', 'ChangeInPrice',
-                                    'TradeTime', 'CompanyShortName', 'Volume', 'MarketCap', 'NumberofShares',
-                                    'Dividend',
-                                    'DividendYield', 'PERatio', 'FreeFloatinP', 'EPS2023', 'BookValuePerShare',
-                                    'CashFlowPerShare', 'NewsArticle', 'BuySellHold', '52WeekLow', '52WeekHigh',
-                                    'Forecast']).set_index('CompanyName')
+    sp_df11 = pd.DataFrame(sp_val1[0], columns=['CompanyName', 'PreviousClose', 'LastUpdated', 'PercentChange', 'ChangeInPrice', 'TradeTime', 'CompanyShortName', 'Volume', 'MarketCap', 'NumberofShares', 'Dividend', 'DividendYield', 'PERatio', 'FreeFloatinP', 'EPS2023', 'BookValuePerShare', 'CashFlowPerShare', 'NewsArticle', 'BuySellHold', '52WeekLow', '52WeekHigh', 'Forecast']).set_index('CompanyName')
     print(sp_df11.head(5))
-    print("Total Record Count: ", len(sp_df11))
+    print("Total Record Count: ", len(sp_df11), " * ", len(sp_df11.columns))
 
     print("**************************** DataSet 1-2 ****************************")
     dts = CommonModule.date_generator("%-Y%m%d", 1)
     dte = CommonModule.date_generator("%-Y%m%d", 21)
-    sp_df12 = CommonModule.ds_api(
-        'https://markets.businessinsider.com/Ajax/Chart_GetChartData?instrumentType=Index&tkData=1059,998434,1059,333&from=%s&to=%s' % (
-        dte[0], dts[0]), mode='s')
+    sp_df12 = CommonModule.ds_api('https://markets.businessinsider.com/Ajax/Chart_GetChartData?instrumentType=Index&tkData=1059,998434,1059,333&from=%s&to=%s' % (dte[0], dts[0]), mode='s')
     sp_df12['Date'] = sp_df12['Date'].str[:10]
     sp_df12 = sp_df12.set_index('Date')
     print(sp_df12.head(5))
-    print("Total Record Count: ", len(sp_df12))
+    print("Total Record Count: ", len(sp_df12), " * ", len(sp_df12.columns))
 
     print("**************************** DataSet 1-3 ****************************")
     sp_df13 = sp_val1[1]
     print(sp_df13.head(5))
-    print("Total Record Count: ", len(sp_df13))
+    print("Total Record Count: ", len(sp_df13), " * ", len(sp_df13.columns))
 
     print("**************************** DataSet 2 ****************************")
     print("Please uncomment them while execution as the api access is limited for a month")
@@ -53,7 +45,7 @@ def run(sp_cmpy=''):
     # sp_df2['Date'] = sp_df2['published_at'].str[:10]
     # sp_df2 = sp_df2.set_index('Date')
     # print(sp_df2.head(5))
-    # print("Total Record Count: ", len(sp_df2))
+    # print("Total Record Count: ", len(sp_df2), " * ", len(sp_df2.columns))
 
     # **************************** DataSet 2 ****************************
     # author                                                                                        title                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   description                                                                                                                                                   url                                 source                                                                               image  category language country               published_at
@@ -66,12 +58,10 @@ def run(sp_cmpy=''):
     # Total Record Count:  10
 
     print("**************************** DataSet 3 ****************************")
-    sp_df3 = CommonModule.ds_api(
-        web_link='https://pkgstore.datahub.io/core/s-and-p-500-companies-financials/constituents-financials_json/data/ddf1c04b0ad45e44f976c1f32774ed9a/constituents-financials_json.json',
-        mode='s').set_index('Name')
+    sp_df3 = CommonModule.ds_api(web_link='https://pkgstore.datahub.io/core/s-and-p-500-companies-financials/constituents-financials_json/data/ddf1c04b0ad45e44f976c1f32774ed9a/constituents-financials_json.json', mode='s').set_index('Name')
     sp_df3 = sp_df3[sp_df3['Symbol'].isin(CommonModule.cmpy_short_names+['FB'] if 'META' in CommonModule.cmpy_short_names else CommonModule.cmpy_short_names)]
     print(sp_df3.head(5))
-    print("Total Record Count: ", len(sp_df3))
+    print("Total Record Count: ", len(sp_df3), " * ", len(sp_df3.columns))
 
     print("**************************** Analysis ****************************")
 

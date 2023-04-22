@@ -1,7 +1,8 @@
+import os
 import random
 import matplotlib.pyplot as plt
 from tabulate import tabulate
-import os
+
 
 # prediction model
 class ProcessModule:
@@ -30,8 +31,8 @@ class ProcessModule:
         df = dataframe1.reset_index()[['CompanyName', 'NewsArticle', 'BuySellHold', '52WeekLow', '52WeekHigh', 'Forecast']]
         print(tabulate(df[['CompanyName', 'NewsArticle', 'Forecast', 'BuySellHold', '52WeekLow', '52WeekHigh']].head(50), headers='keys', tablefmt='psql', showindex=False))
         df['BuySellHold'] = df["BuySellHold"].str.split(pat="consensus rating of ", expand=True)[1].str.split(pat=" ").str[0].str[0:-1]
-        df['52WeekLow'] = df["52WeekLow"].str.split(pat=" stock was ", expand=True)[1].str.split(pat=" ").str[0].str[0 : -1]
-        df['52WeekHigh'] = df["52WeekHigh"].str.split(pat=" stock was ", expand=True)[1].str.split(pat=" ").str[0].str[0 : -1]
+        df['52WeekLow'] = df["52WeekLow"].str.split(pat=" stock was ", expand=True)[1].str.split(pat=" ").str[0].str[0: -1]
+        df['52WeekHigh'] = df["52WeekHigh"].str.split(pat=" stock was ", expand=True)[1].str.split(pat=" ").str[0].str[0: -1]
         df['Forecast'] = df["Forecast"].str.split(pat=" The median estimate ", expand=True)[0]
         table = axis1[1].table(cellText=df[['CompanyName', 'BuySellHold', '52WeekLow', '52WeekHigh']].head(10).to_numpy(), colLabels=['S&P 500 Company', 'Analyst Suggestion', '52Week Low Price', '52Week High Price'], loc='center')
         table.scale(1, 1)

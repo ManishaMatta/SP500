@@ -1,5 +1,5 @@
 import os
-from datetime import datetime
+# from datetime import datetime
 import pandas as pd
 from dataCollection.common import CommonModule
 from dataVisualization.visualize import ProcessModule
@@ -17,27 +17,27 @@ def run():
     print("**************************** DataSet 1-1 ****************************")
     sp_df11 = CommonModule.csv_reader("%s/resources/dataset11.csv" % os.getcwd()).set_index('CompanyName')
     print(sp_df11.head(5))
-    print("Total Record Count: ", len(sp_df11))
+    print("Total Record Count: ", len(sp_df11), " * ", len(sp_df11.columns))
 
     print("**************************** DataSet 1-2 ****************************")
     sp_df12 = CommonModule.csv_reader("%s/resources/dataset12.csv" % os.getcwd()).set_index('Date')
     print(sp_df12.head(5))
-    print("Total Record Count: ", len(sp_df12))
+    print("Total Record Count: ", len(sp_df12), " * ", len(sp_df12.columns))
 
     print("**************************** DataSet 1-3 ****************************")
     sp_df13 = CommonModule.csv_reader("%s/resources/dataset13.csv" % os.getcwd()).set_index('Date')
     print(sp_df13.head(5))
-    print("Total Record Count: ", len(sp_df13))
+    print("Total Record Count: ", len(sp_df13), " * ", len(sp_df13.columns))
 
     print("**************************** DataSet 2 ****************************")
     sp_df2 = CommonModule.csv_reader("%s/resources/dataset2.csv" % os.getcwd()).set_index('Date')
     print(sp_df2.head(5))
-    print("Total Record Count: ", len(sp_df2))
+    print("Total Record Count: ", len(sp_df2), " * ", len(sp_df2.columns))
 
     print("**************************** DataSet 3 ****************************")
     sp_df3 = CommonModule.csv_reader("%s/resources/dataset3.csv" % os.getcwd()).set_index('Name')
     print(sp_df3.head(5))
-    print("Total Record Count: ", len(sp_df3))
+    print("Total Record Count: ", len(sp_df3), " * ", len(sp_df3.columns))
 
     print("**************************** Analysis ****************************")
 
@@ -47,8 +47,6 @@ def run():
     ProcessModule.process_df3(mode, sp_df3, sp_df11)
     # ProcessModule.process_df2(sp_df11)
     # ProcessModule.process_all(sp_df11)
-
-
 
 # start_time = datetime.now().strftime("%-Y%m%d%H%M%S")
 # run()
