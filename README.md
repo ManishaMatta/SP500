@@ -124,6 +124,7 @@ As this is the first MVP version of the code. The scope of improvement in the pr
 * Maintaining history of the data processed for better training set.
 * Scheduling the module for more consistent data testing and evaluation.
 * API call for dataset-2 is possible only 100 times a month, Requesting access for frequent data pulls for analysis.
+* Adding a constant and parameter file for generalizing the codebase
 
 ### VIII. Conclusion
 
