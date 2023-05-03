@@ -8,3 +8,5 @@ dataProcessing/__pycache__/*
 .DS_Store
 */*/.DS_Store
 resources/html/*
+resources/test_data.csv
+c*T.py
