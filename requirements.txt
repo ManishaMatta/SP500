@@ -106,3 +106,13 @@ webencodings==0.5.1
 websocket-client==1.5.1
 widgetsnbextension==4.0.5
 yfinance==0.2.18
+
+scipy==1.10.1
+scikit-learn==1.2.2
+textblob==0.17.1
+tensorboard==2.12.2
+tensorboard-data-server==0.7.0
+tensorboard-plugin-wit==1.8.1
+tensorflow-estimator==2.12.0
+# tensorflow==2.12.0
+keras==2.12.0

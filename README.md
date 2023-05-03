@@ -10,22 +10,28 @@ The data is divided into multiple datasets to infer different correlation and pr
 
 The codebase is present under the **Manisha_Radhakrishna_HW4/SP500** directory
    * main class -> ./snp500.py [start point of the project]
+   * output HTML file -> ./output_file.html [project output webpage]
    * execution modes modules
      * static mode -> ./runMode/staticMode.py [code for execution with static mode]
      * scrape mode -> ./runMode/scrapeMode.py [code for execution with scrape mode]
      * default mode -> ./runMode/defaultMode.py [code for execution with default mode]
-   * data extraction modules
-     * common module -> ./dataCollection/common.py [common modules used for data extraction]
+   * data collection modules
+     * common module -> ./dataCollection/common.py [common modules used in the project]
+     * collect module -> ./dataCollection/collect.py [module used for data extraction]
+   * data processing modules
+     * process module -> ./dataProcessing/process.py [process modules used for data analysis]
    * data visualization modules
-     * chart visualizer -> ./dataVisualization/visualize.py [common module used for data analysis]
+     * chart visualizer -> ./dataVisualization/visualize.py [module used for data visualization]
+     * html module -> ./dataVisualization/html.py [module used for generating output web page]
    * code resources
      * datasets -> ./resources/dataset*.csv [datasets used for static mode]
      * outputs -> ./resources/output/<mode>/S&P_500_Analysis*.svg [analysis outputs from the codebase]
      * logs -> ./resources/logs/<mode>.txt [execution logs in each mode]
      * pictures -> ./resources/pictures/flowchart.png [flowchart]
+     * html -> ./resources/html/* [content used in the webpage]
 
 ### II. Flow Chart
-![flowchart.png](resources%2Fpictures%2Fflowchart.png) 
+![flowchart.png](resources%2Fpictures%2Fflowchart.png)
 
 ### III. Requirements
 
@@ -35,6 +41,13 @@ run the code. To install above packages use the following command:
 `pip install -r requirements.txt`
 
 './requirements.txt' -> file has a list of all the necessary packages required to run this code
+
+**NOTE**: Please check for the installation of `tensorflow` as it takes longer and if any issues please follow the below commands [https://www.tensorflow.org/install/pip#macos].
+
+manually install by : `conda install tensorflow`   [Please uninstall and reinstall if any issues]
+
+manually install by : `pip install tensorflow` https://www.tensorflow.org/install/pip#macos [faced few version compatibility issues in mac -ERROR zsh: illegal hardware instruction python. Please use the conda option]
+
 
 #### Packages Installed
 
@@ -51,6 +64,13 @@ Packages to be installed:
 8. yfinance
 9. tabulate
 10. BeautifulSoup
+11. sklearn
+12. tensorflow
+13. keras
+14. textblob
+15. scipy
+16. seaborn
+17. copy
 
 ### IV. Data Sources
 
@@ -69,11 +89,11 @@ Packages to be installed:
 
 ### V. Code Execution
 
-The code can be run in three modes: default, scrape and static. Please execute the commands from the module directory
-The analysis charts pop-up after the code execution, and are also save in the **../resource/output/<mode>** directory.
-Currently, the code will finish execution only after manual closing of the graphs. This is because the code is in debug state. The pop-up will be disabled after the code completion
+The code can be run in three modes: default, scrape and static. Please execute the commands from the module directory [**Manisha_Radhakrishna_HW4/SP500**]
+The output analysis webpage pops-up after the code execution, and charts are also saved in the **../resource/html/** directory for future reference.
+We can open the file **./output_file.html** path like `file:///<absolute_path>/output_file.html` on Google Chrome full screen for better visibility.
 
-**NOTE**: Please enlarge the charts for formatted display.
+**NOTE**: Please enlarge the webpage for formatted display, Some graph may not be displayed on safari hence please copy the URL to Chrome/FireFox.
 
 * Static Mode:
   This mode would execute the datasets from sample data stored as csv files from the above sources to get partial analysis of the data.
@@ -81,7 +101,7 @@ Currently, the code will finish execution only after manual closing of the graph
   The static mode can be executed in 1 way:
     1. No Parameters : `python snp500.py --static`
 
-  Execution Time : ~5 seconds
+  Execution Time : ~1370 seconds
 
 
 * Scrape Mode:
@@ -96,7 +116,7 @@ Currently, the code will finish execution only after manual closing of the graph
    3. Specific S&P Companies : `python snp500.py --scrape <cmpy_1,cmpy_2>`
         [Ex. 3M,AbbVie,Accenture,Adobe]
 
-  Execution Time : ~11 seconds
+  Execution Time : ~1000 seconds
 
 
 * Default Mode:
@@ -109,10 +129,23 @@ Currently, the code will finish execution only after manual closing of the graph
     3. Specific S&P Companies : `python snp500.py <cmpy_1,cmpy_2>`
        [Ex. 3M,AbbVie,Accenture,Adobe]
 
-  Execution Time : ~900 seconds
+  Execution Time : ~900 seconds [with company list]  ~7000 secs [all S&P 500]
+
+### VI. Evaluation
+
+Below are few concepts covered in this module:
+
+* User control in the analysis i.e, the user gets to choose subset of S&P 500 companies for the analysis else this process would run for all 500 companies.
+* Data Analysis :
+  * Linear Regression Model and LSTM (Long Short-Term Memory) Model for predictive analysis.
+  * Spearman Rank Correlation statistical methods for correlative analysis.
+  * Moving Average Statistical technique for trend analysis.
+  * Natural language processing (NLP) technique for sentiment analysis.
+* Displaying an output table with suggested investment advice for each S&P companies.
+* Output webpage to display all the data analysis and outcomes with explanations.
 
 
-### VI. Maintenance
+### VII. Maintenance
 
 These are the few aspects of the codebase that will require maintenance:
 
@@ -123,7 +156,7 @@ These are the few aspects of the codebase that will require maintenance:
 * Adding the comments on all function for understanding the logic used in the project.
 * If any webpage is under maintenance [statuscode=400], I'm throwing an exception message with the current issue.
 
-### VII. Extensibility
+### VIII. Extensibility
 
 As this is the first MVP(Minimum Viable Product) version of the code. The scope of improvement in the project could be in the following areas:
 
@@ -134,6 +167,6 @@ As this is the first MVP(Minimum Viable Product) version of the code. The scope 
 * API call for dataset-2 is possible only 100 times a month, Requesting access for frequent data pulls for analysis.
 * Adding constant file and parameter file for generalizing the codebase
 
-### VIII. Conclusion
+### IX. Conclusion
 
 Overall, the S&P 500 data analysis project is an undertaking that provides a deeper understanding of the stock market and the economy as a whole. It offers insights into the past and present performance of the stock market and provides a framework for making informed investment decisions for the future.

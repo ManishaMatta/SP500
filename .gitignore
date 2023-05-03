@@ -3,3 +3,8 @@ runMode/__pycache__/*
 dataVisualization/__pycache__/*
 dataCollection/__pycache__/*
 default_logs
+dataProcessing/__pycache__/*
+*/.DS_Store
+.DS_Store
+*/*/.DS_Store
+resources/html/*
