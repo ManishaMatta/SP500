@@ -36,17 +36,20 @@ The codebase is present under the **Manisha_Radhakrishna_HW4/SP500** directory
 ### III. Requirements
 
 The project must download and install the below listed modules and packages to
-run the code. To install above packages use the following command: 
+run the code. To install the packages use the following command: 
 
 `pip install -r requirements.txt`
 
 './requirements.txt' -> file has a list of all the necessary packages required to run this code
 
-**For installing _tensorflow_ ,please follow the below steps**
-1. manually install by : `pip install tensorflow` https://www.tensorflow.org/install/pip#macos [worked in windows ,but faced few version compatibility issues in mac -ERROR zsh: illegal hardware instruction python. Please use the conda option if errors]
+**For installing _tensorflow_, please follow the below steps**
+1. manually install by : `pip install tensorflow` https://www.tensorflow.org/install/pip#macos [worked in windows ,but faced few version compatibility issues in mac `-ERROR zsh: illegal hardware instruction python`. Please use the conda option if errors]
 
 [or]
-2. manually install by : `conda install tensorflow`   [Please uninstall and reinstall if any issues]
+
+Please install conda:22.9.0v before executing this step [refer:https://conda.io/projects/conda/en/latest/user-guide/install/index.html]
+2. manually install tensorflow by : `conda install tensorflow` [Please uninstall and reinstall if any issues]
+
 
 Please check for the installation of `tensorflow` as it takes longer and if any issues please follow the commands in https://www.tensorflow.org/install/pip#macos link.
 
@@ -101,7 +104,7 @@ We can open the file **./output_file.html** path like `file:///<run_path>/output
   This mode would execute the datasets from sample data stored as csv files from the above sources to get partial analysis of the data.
 
   The static mode can be executed in 1 way:
-    1. No Parameters : `python <run_path>snp500.py --static`
+    1. No Parameters : `python snp500.py --static`
 
   Execution Time : ~1370 seconds
 
@@ -116,7 +119,7 @@ We can open the file **./output_file.html** path like `file:///<run_path>/output
        [ faang => Meta (META) (formerly known as Facebook), Amazon (AMZN), Apple (AAPL), Netflix (NFLX); and Alphabet (GOOG) (formerly known as Google) ] 
         
    3. Specific S&P Companies : `python snp500.py --scrape <cmpy_1,cmpy_2>`
-        [Ex. 3M,AbbVie,Accenture,Adobe]
+        [Ex. 3M,AbbVie,Accenture,Adobe] :: ***fastest in scrape mode***
 
   Execution Time : ~1000 seconds
 
@@ -129,12 +132,12 @@ We can open the file **./output_file.html** path like `file:///<run_path>/output
     2. Classified Keywords : `python snp500.py faang` 
         [ faang => Meta (META) (formerly known as Facebook), Amazon (AMZN), Apple (AAPL), Netflix (NFLX); and Alphabet (GOOG) (formerly known as Google) ]
     3. Specific S&P Companies : `python snp500.py <cmpy_1,cmpy_2>`
-       [Ex. 3M,AbbVie,Accenture,Adobe]
+       [Ex. 3M,AbbVie,Accenture,Adobe]  :: ***fastest in default mode***
 
   Execution Time : ~900 seconds [with company list]  ~7000 secs [all S&P 500]
 
 
-* As web scraping is done on multiple pages and LSTM model is run on all the companies passed, the execution time would increase based on nuber of S&P companies.
+**NOTE**: As web scraping is done on multiple pages and LSTM model is run on all the companies passed, the execution time would increase based on number of S&P companies.
 For fastest execution `python snp500.py --scrape 3M,Akamai,Accenture,Adobe,AES`
 
 ### VI. Evaluation
@@ -164,7 +167,7 @@ These are the few aspects of the codebase that will require maintenance:
 
 ### VIII. Extensibility
 
-As this is the first MVP(Minimum Viable Product) version of the code. The scope of improvement in the project could be in the following areas:
+As this is the MVP(Minimum Viable Product) version of the code. The scope of improvement in the project could be in the following areas:
 
 * Updating the dataset-3 with more general and current data.
 * Requesting access for scraping U.S. Securities and Exchange Commission website for financial data.
