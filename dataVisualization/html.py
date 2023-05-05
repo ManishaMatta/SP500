@@ -4,7 +4,7 @@ import webbrowser
 
 class HTMLVisualize:
     @staticmethod
-    def html_page(path, mse, mse_all):
+    def html_page(path, pic_path, mse, mse_all):
         html_template = """
 <!DOCTYPE html>
 <html>
@@ -50,7 +50,7 @@ class HTMLVisualize:
 <br>
 <h2 style="text-align: left;">I.&nbsp;&nbsp;&nbsp;&nbsp; Flow Diagram</h2>
 <img style="border: 2px solid black;"
-     src="{path}/resources/pictures/flowchart.png" alt="FlowChart Image"
+     src="{pic_path}/resources/pictures/flowchart.png" alt="FlowChart Image"
      align="middle">
 <p>Apart from the passed input datasets, the execution modes with the optional selected list of S&P companies are passed
     as input. This data is then cleaned and validated for any noises or missing records. The datasets are then analysed
@@ -164,6 +164,7 @@ class HTMLVisualize:
 """
         html = html_template.format(
             path=path,
+            pic_path=pic_path,
             mse=mse,
             mse_1=round(mse_all[0], 3),
             mse_2=round(mse_all[1], 3),
@@ -198,7 +199,8 @@ class HTMLVisualize:
     @staticmethod
     def publish_html(pwd, html_dir, mse, mse_all):
         # path = pwd+"/resources/html/"  # replace with your folder path
+        pic_path = os.path.abspath(__file__).split('dataVisualization')[0]
         HTMLVisualize.graph_scroll(html_dir)
         with open(os.path.join(pwd, "output_file.html"), 'w') as f:
-            f.write(HTMLVisualize.html_page(pwd, mse, mse_all))
+            f.write(HTMLVisualize.html_page(pwd, pic_path, mse, mse_all))
         webbrowser.open('file://' + os.path.join(pwd, "output_file.html"))

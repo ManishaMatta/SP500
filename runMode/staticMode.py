@@ -7,7 +7,7 @@ from dataVisualization.html import HTMLVisualize
 from dataVisualization.visualize import VisualizeModule
 
 
-def run(path=''):
+def run():
 
     pd.set_option('display.max_colwidth', None)
     pd.set_option('display.max_rows', None)
@@ -21,7 +21,7 @@ def run(path=''):
     # os.rmdir(html_dir)
     os.makedirs(html_dir) if not os.path.exists(html_dir) else print("Directory %s recreated for current run" % html_dir)
 
-    resource_path = os.path.join(pwd, "resources") if len(path) == 0 else path
+    resource_path = os.path.join(os.path.abspath(__file__).split('runMode')[0], "resources")
 
     print("**************************** DataSet 1-1 ****************************")
     sp_df11 = CommonModule.csv_reader("%s/dataset11.csv" % resource_path).set_index('CompanyName')

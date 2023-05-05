@@ -91,20 +91,17 @@ Packages to be installed:
 
 ### V. Code Execution
 
-The code can be run in three modes: default, scrape and static. Please execute the commands from the module directory [**Manisha_Radhakrishna_HW4/SP500**]
+The code can be run in three modes: default, scrape and static. Please execute the commands preferably from the module directory [**Manisha_Radhakrishna_HW4/SP500**]
 The output analysis webpage pops-up after the code execution, and charts are also saved in the **../resource/html/** directory for future reference.
-We can open the file **./output_file.html** path like `file:///<absolute_path>/output_file.html` on **Google Chrome** full screen for better visibility.
-When the execution is from any different directory other than the mentioned directory [Manisha_Radhakrishna_HW4/SP500], the static mode would fail [FileNotFound Exception : of the input files]. 
-The scrape and default mode would execute without any issues, but the output webpage would not have the flowchart image displayed as the relative path of the image is mentioned from the main class.
+We can open the file **./output_file.html** path like `file:///<run_path>/output_file.html` on **Google Chrome** full screen for better visibility.
 
 **NOTE**: Please enlarge the webpage for formatted display, Some graph may not be displayed on safari/Firefox hence please copy the URL to Chrome[works on both windows and mac].
 
 * Static Mode:
   This mode would execute the datasets from sample data stored as csv files from the above sources to get partial analysis of the data.
 
-  The static mode can be executed in 2 way:
-    1. No Parameters : `python snp500.py --static`
-    2. Dataset Path Parameter : `python <absolute_path>/snp500.py --static <staticDataset_absolutePath>`
+  The static mode can be executed in 1 way:
+    1. No Parameters : `python <run_path>snp500.py --static`
 
   Execution Time : ~1370 seconds
 
