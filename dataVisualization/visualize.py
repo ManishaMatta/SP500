@@ -36,7 +36,7 @@ class VisualizeModule:
         df = df.rename(columns={"CompanyName": "Company Name", "CompanyShortName": "Company Short Name", 'BuySellHold': 'Buy-Sell-Hold', 'LastUpdated': 'Current Price', '52WeekLow': '52-Week Low', '52WeekHigh': '52-Week High'})
         print(df.head(len(df)))
         html_table = df.set_index('Company Name').to_html()
-        text_file = open(os.path.join(path, "table.html", "w"))
+        text_file = open(os.path.join(path, "table.html"), "w")
         text_file.write(html_table)
         text_file.close()
 
