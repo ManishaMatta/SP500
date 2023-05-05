@@ -12,7 +12,7 @@ def main():
         if len(args) >= 1:     # if number of parameters > 1
             if args[0] == '--static':     # checking if the 2nd param is static
                 print("------------ STATIC MODE ------------")
-                staticMode.run()     # executing the static flow
+                staticMode.run() if len(args) == 1 else staticMode.run(path=args[1])      # executing the static flow
             elif args[0] == '--scrape':     # checking if the 2nd parameter is scrape
                 print("------------ SCRAPE MODE ------------")
                 if len(args) > 1:     # if it has more parameters executing scrape flow with cmpy dtls

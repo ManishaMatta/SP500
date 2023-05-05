@@ -42,11 +42,13 @@ run the code. To install above packages use the following command:
 
 './requirements.txt' -> file has a list of all the necessary packages required to run this code
 
-**NOTE**: Please check for the installation of `tensorflow` as it takes longer and if any issues please follow the below commands [https://www.tensorflow.org/install/pip#macos].
+**For installing _tensorflow_ ,please follow the below steps**
+1. manually install by : `pip install tensorflow` https://www.tensorflow.org/install/pip#macos [worked in windows ,but faced few version compatibility issues in mac -ERROR zsh: illegal hardware instruction python. Please use the conda option if errors]
 
-manually install by : `conda install tensorflow`   [Please uninstall and reinstall if any issues]
+[or]
+2. manually install by : `conda install tensorflow`   [Please uninstall and reinstall if any issues]
 
-manually install by : `pip install tensorflow` https://www.tensorflow.org/install/pip#macos [faced few version compatibility issues in mac -ERROR zsh: illegal hardware instruction python. Please use the conda option]
+Please check for the installation of `tensorflow` as it takes longer and if any issues please follow the commands in https://www.tensorflow.org/install/pip#macos link.
 
 
 #### Packages Installed
@@ -91,15 +93,18 @@ Packages to be installed:
 
 The code can be run in three modes: default, scrape and static. Please execute the commands from the module directory [**Manisha_Radhakrishna_HW4/SP500**]
 The output analysis webpage pops-up after the code execution, and charts are also saved in the **../resource/html/** directory for future reference.
-We can open the file **./output_file.html** path like `file:///<absolute_path>/output_file.html` on Google Chrome full screen for better visibility.
+We can open the file **./output_file.html** path like `file:///<absolute_path>/output_file.html` on **Google Chrome** full screen for better visibility.
+When the execution is from any different directory other than the mentioned directory [Manisha_Radhakrishna_HW4/SP500], the static mode would fail [FileNotFound Exception : of the input files]. 
+The scrape and default mode would execute without any issues, but the output webpage would not have the flowchart image displayed as the relative path of the image is mentioned from the main class.
 
-**NOTE**: Please enlarge the webpage for formatted display, Some graph may not be displayed on safari hence please copy the URL to Chrome/FireFox.
+**NOTE**: Please enlarge the webpage for formatted display, Some graph may not be displayed on safari/Firefox hence please copy the URL to Chrome[works on both windows and mac].
 
 * Static Mode:
   This mode would execute the datasets from sample data stored as csv files from the above sources to get partial analysis of the data.
 
-  The static mode can be executed in 1 way:
+  The static mode can be executed in 2 way:
     1. No Parameters : `python snp500.py --static`
+    2. Dataset Path Parameter : `python <absolute_path>/snp500.py --static <staticDataset_absolutePath>`
 
   Execution Time : ~1370 seconds
 
@@ -130,6 +135,10 @@ We can open the file **./output_file.html** path like `file:///<absolute_path>/o
        [Ex. 3M,AbbVie,Accenture,Adobe]
 
   Execution Time : ~900 seconds [with company list]  ~7000 secs [all S&P 500]
+
+
+* As web scraping is done on multiple pages and LSTM model is run on all the companies passed, the execution time would increase based on nuber of S&P companies.
+For fastest execution `python snp500.py --scrape 3M,Akamai,Accenture,Adobe,AES`
 
 ### VI. Evaluation
 

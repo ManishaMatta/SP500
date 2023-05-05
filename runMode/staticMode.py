@@ -7,7 +7,7 @@ from dataVisualization.html import HTMLVisualize
 from dataVisualization.visualize import VisualizeModule
 
 
-def run():
+def run(path=''):
 
     pd.set_option('display.max_colwidth', None)
     pd.set_option('display.max_rows', None)
@@ -21,28 +21,30 @@ def run():
     # os.rmdir(html_dir)
     os.makedirs(html_dir) if not os.path.exists(html_dir) else print("Directory %s recreated for current run" % html_dir)
 
+    resource_path = os.path.join(pwd, "resources") if len(path) == 0 else path
+
     print("**************************** DataSet 1-1 ****************************")
-    sp_df11 = CommonModule.csv_reader("%s/resources/dataset11.csv" % pwd).set_index('CompanyName')
+    sp_df11 = CommonModule.csv_reader("%s/dataset11.csv" % resource_path).set_index('CompanyName')
     print(sp_df11.head(5))
     print("Total Record Count: ", len(sp_df11), " * ", len(sp_df11.columns))
 
     print("**************************** DataSet 1-2 ****************************")
-    sp_df12 = CommonModule.csv_reader("%s/resources/dataset12.csv" % pwd).set_index('Date')
+    sp_df12 = CommonModule.csv_reader("%s/dataset12.csv" % resource_path).set_index('Date')
     print(sp_df12.head(5))
     print("Total Record Count: ", len(sp_df12), " * ", len(sp_df12.columns))
 
     print("**************************** DataSet 1-3 ****************************")
-    sp_df13 = CommonModule.csv_reader("%s/resources/dataset13.csv" % pwd).set_index('Date')
+    sp_df13 = CommonModule.csv_reader("%s/dataset13.csv" % resource_path).set_index('Date')
     print(sp_df13.head(5))
     print("Total Record Count: ", len(sp_df13), " * ", len(sp_df13.columns))
 
     print("**************************** DataSet 2 ****************************")
-    sp_df2 = CommonModule.csv_reader("%s/resources/dataset2.csv" % pwd).set_index('Date')
+    sp_df2 = CommonModule.csv_reader("%s/dataset2.csv" % resource_path).set_index('Date')
     print(sp_df2.head(5))
     print("Total Record Count: ", len(sp_df2), " * ", len(sp_df2.columns))
 
     print("**************************** DataSet 3 ****************************")
-    sp_df3 = CommonModule.csv_reader("%s/resources/dataset3.csv" % pwd).set_index('Name')
+    sp_df3 = CommonModule.csv_reader("%s/dataset3.csv" % resource_path).set_index('Name')
     print(sp_df3.head(5))
     print("Total Record Count: ", len(sp_df3), " * ", len(sp_df3.columns))
 

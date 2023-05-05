@@ -7,7 +7,7 @@
             border: 3px solid black;
             margin: 2em;
             padding: 2em;
-            background-color:LightGray;
+            background-color:white;
             }
             * {
             box-sizing: border-box;
@@ -43,7 +43,7 @@
 <br>
 <h2 style="text-align: left;">I.&nbsp;&nbsp;&nbsp;&nbsp; Flow Diagram</h2>
 <img style="border: 2px solid black;"
-     src="/Users/Manisha/Documents/github/ManishaMatta/SP500//resources/pictures/flowchart.png" alt="FlowChart Image"
+     src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/pictures/flowchart.png" alt="FlowChart Image"
      align="middle">
 <p>Apart from the passed input datasets, the execution modes with the optional selected list of S&P companies are passed
     as input. This data is then cleaned and validated for any noises or missing records. The datasets are then analysed
@@ -58,11 +58,11 @@
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;&nbsp;&nbsp;&nbsp;Individual companies under S&P 500</p>
 <div class="row">
     <div class="column">
-        <img src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/scrape/graph_sp.svg"
+        <img src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/default/ppt/graph_sp.svg"
              alt="Total S&P 500 Stocks" style="width:90%;border: 2px solid black;">
     </div>
     <div class="column">
-        <img src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/scrape/graph_sp_all.svg"
+        <img src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/default/ppt/graph_sp_all.svg"
              alt="Individual Company Stock" style="width:90%;border: 2px solid black;">
     </div>
 </div>
@@ -70,45 +70,45 @@
 <h4 style="text-align: left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp; LSTM[Long Short-Term Memory] model with Mean Squared Error evaluation</h4>
 <p>LSTM (Long Short-Term Memory) is a type of Recurrent Neural Network (RNN) architecture that is designed to remember long-term dependencies. It is particularly useful in sequential data applications such as speech recognition, natural language processing, and time series prediction. </p>
 <p>The below graphs represent the dataset after applying LSTM prediction models and evaluated with Mean Squared Error metric</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;&nbsp;&nbsp;&nbsp;The S&P 500 index for all 500 companies : Mean Squared Error=13037.7861328125 </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;&nbsp;&nbsp;&nbsp;Individual companies under S&P 500 - please scroll for all company details : Mean Squared Error=58.461 </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;&nbsp;&nbsp;&nbsp;The S&P 500 index for all 500 companies : Mean Squared Error=10051.3984375 </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;&nbsp;&nbsp;&nbsp;Individual companies under S&P 500 - please scroll for all company details : Mean Squared Error=47.948 </p>
 <div class="container">
     <img style="border: 2px solid black;width:700px; height:900px;"
-         src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/scrape/graph_lstm.svg" alt="LSTM Model"
+         src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/default/ppt/graph_lstm.svg" alt="LSTM Model"
          align="middle">
     <iframe class="text"
             style="background-color: white;border: 2px solid black;width:900px; height:900px;display: block;"
-            src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/scrape/graph_lstm.html"
+            src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/default/ppt/graph_lstm.html"
             width="90%"></iframe>
 </div>
 <br>
 <h4 style="text-align: left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp; Linear Regression model with Mean Squared Error evaluation</h4>
 <p>Linear Regression is a type of regression analysis used for predicting a continuous target variable (also called a response variable) from one or more predictor variables. The linear regression model assumes that there is a linear relationship between the predictor variables and the target variable. It tries to fit a straight line to the data that best describes the relationship between the variables.</p>
 <p>The below graphs represent the dataset after applying Linear Regression prediction models and evaluated with Mean Squared Error metric</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;&nbsp;&nbsp;&nbsp;The S&P 500 index for all 500 companies : Mean Squared Error=1711.404 </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;&nbsp;&nbsp;&nbsp;Individual companies under S&P 500 - please scroll for all company details : Mean Squared Error=9.598 </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;&nbsp;&nbsp;&nbsp;The S&P 500 index for all 500 companies : Mean Squared Error=1351.315 </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;&nbsp;&nbsp;&nbsp;Individual companies under S&P 500 - please scroll for all company details : Mean Squared Error=6.314 </p>
 <div class="container">
     <img style="border: 2px solid black;width:700px; height:900px;"
-         src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/scrape/graph_lr.svg"
+         src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/default/ppt/graph_lr.svg"
          alt="Linear Regression Model" align="middle">
     <iframe style="background-color: white;border: 2px solid black;width:900px; height:900px;display: block;"
-            src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/scrape/graph_lr.html" width="500"
+            src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/default/ppt/graph_lr.html" width="500"
             height="600"></iframe>
 </div>
 <br>
 <h5>From comparing the 2 machine learning models</h5>
-<h5>Better precision is received by using Linear Regression model as Mean squared error is : 1711.404</h5>
+<h5>Better precision is received by using Linear Regression model as Mean squared error is : 1351.315</h5>
 <h3 style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp; (ii) &nbsp;&nbsp;&nbsp;&nbsp;Correlating analysis using Spearman Rank Statistical Model</h3>
 <p>Spearman rank correlation coefficient (SRCC) is a non-parametric test that measures the strength and direction of association between two ranked variables. It is used to determine the extent to which the variables are related. Like other correlation coefficients, this one varies between -1 and +1 with 0 implying no correlation. Its p-value provides if the outcome is statistically significant, it is more accurate for large samples</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;&nbsp;&nbsp;&nbsp;This graph plots the correlation coefficient for each sector, and the size of the bubble signifies its p-value. This depicts industrial sector's dependency on the overall stock market and its influence possibility.</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;&nbsp;&nbsp;&nbsp;This graph plots the coverage of each sector and company in the overall stock market. </p>
 <div class="row">
     <div class="column">
-        <img src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/scrape/graph_stat_src.svg"
+        <img src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/default/ppt/graph_stat_src.svg"
              alt="Correlation Analysis" style="width:90%;border: 2px solid black;">
     </div>
     <div class="column">
-        <img src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/scrape/graph_pie.svg"
+        <img src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/default/ppt/graph_pie.svg"
              alt="pie chart" style="width:90%;border: 2px solid black;">
     </div>
 </div>
@@ -120,24 +120,25 @@
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;&nbsp;&nbsp;&nbsp;This graph helps in understanding potential trading opportunities like if prices are increasing while volume is decreasing, it may indicate a lack of investor confidence in the upward trend, and prices may soon fall.</p>
 <div class="row">
     <div class="column">
-        <img src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/scrape/graph_trend.svg"
+        <img src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/default/ppt/graph_trend.svg"
              alt="line graph" style="width:90%;border: 2px solid black;">
     </div>
     <div class="column">
-        <img src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/scrape/graph_pv.svg"
+        <img src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/default/ppt/graph_pv.svg"
              alt="scatter graph" style="width:90%;border: 2px solid black;">
     </div>
 </div>
+<p>If the volume data isn't displayed in the graph, it signifies that the data wasn't published while retrieving. Try rerunning the code of we can extract the outcome from the 2nd graph. </p>
 <br>
 <h3 style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp; (iv)&nbsp;&nbsp;&nbsp;&nbsp; Sentiment analysis based on News Articles</h3>
 <p>Sentiment analysis is a natural language processing (NLP) technique used to determine the emotional tone behind a piece of writing. It involves identifying and extracting the sentiment (positive, negative, or neutral) from text data. Analyzing news articles for sentiment, provides valuable insights into how current events both positive or negative are impacting the stock market.</p>
 <p>Due to the current inflation, the news articles published currently do not indicate any overall positive aspect.</p>
 <div class="container">
     <img style="border: 2px solid black;width:700px; height:600px;"
-         src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/scrape/graph_senti.svg" alt="Sentiment"
+         src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/default/ppt/graph_senti.svg" alt="Sentiment"
          align="middle">
     <iframe style="background-color: white;border: 2px solid black;width:900px; height:600px;display: block;"
-            src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/scrape/news_articles.html" width="500"
+            src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/default/ppt/news_articles.html" width="500"
             height="600"></iframe>
 </div>
 <br>
@@ -145,7 +146,7 @@
 <h2 style="text-align: left;">III.&nbsp;&nbsp;&nbsp;&nbsp; Outcome</h2>
 <p>From analysing the insights offered on the past and present performance of the stock market data using all the above techniques. The table below summarises the analysis by indicating the preferred activity for investors to developing investment strategies that align with their financial goals and risk tolerance.</p>
 <iframe style="background-color: white;border: 2px solid black;width:900px; height:600px;display: block;"
-        src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/scrape/table.html" width="900"
+        src="/Users/Manisha/Documents/github/ManishaMatta/SP500/resources/output/default/ppt/table.html" width="900"
         height="600"></iframe>
 <br>
 <br>
