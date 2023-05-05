@@ -48,8 +48,8 @@ run the code. To install the packages use the following command:
 [or]
 
 Please install conda:22.9.0v before executing this step [refer:https://conda.io/projects/conda/en/latest/user-guide/install/index.html]
-2. manually install tensorflow by : `conda install tensorflow` [Please uninstall and reinstall if any issues]
 
+2. manually install tensorflow by : `conda install tensorflow` [Please uninstall and reinstall if any issues]
 
 Please check for the installation of `tensorflow` as it takes longer and if any issues please follow the commands in https://www.tensorflow.org/install/pip#macos link.
 
