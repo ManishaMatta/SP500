@@ -173,7 +173,7 @@ class HTMLVisualize:
         return html
 
     @staticmethod
-    def graph_scroll(pwd, file_path):
+    def graph_scroll(file_path):
         files = os.listdir(file_path)
         lr_file = [file for file in files if file.__contains__("graph_lr_")]
         lstm_file = [file for file in files if file.__contains__("graph_lstm_")]
@@ -188,17 +188,17 @@ class HTMLVisualize:
             lstm_tags += coll_tag
         lr_tags += """</div>"""
         lstm_tags += """</div>"""
-        text_file = open(pwd+"/resources/html/graph_lr.html", "w")
+        text_file = open(file_path+"graph_lr.html", "w")
         text_file.write(lr_tags)
         text_file.close()
-        text_file = open(pwd+"/resources/html/graph_lstm.html", "w")
+        text_file = open(file_path+"graph_lstm.html", "w")
         text_file.write(lstm_tags)
         text_file.close()
 
     @staticmethod
-    def publish_html(pwd, mse, mse_all):
-        path = pwd+"/resources/html/"  # replace with your folder path
-        HTMLVisualize.graph_scroll(pwd, path)
-        with open(pwd+"/output_file.html", 'w') as f:
+    def publish_html(pwd, html_dir, mse, mse_all):
+        # path = pwd+"/resources/html/"  # replace with your folder path
+        HTMLVisualize.graph_scroll(html_dir)
+        with open(pwd+"output_file.html", 'w') as f:
             f.write(HTMLVisualize.html_page(pwd, mse, mse_all))
         webbrowser.open('file://' + pwd + "output_file.html")

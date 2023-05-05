@@ -19,8 +19,9 @@ def run(sp_cmpy=''):
 
     pwd = os.getcwd()    #  "/Users/Manisha/Documents/github/ManishaMatta/SP500/"
     print("Current working directory", pwd)
-    os.system("rm -r -f %s/resources/html/*" % pwd)
-    os.system("mkdir %s/resources/html/" % pwd)
+    html_dir = os.path.join(os.path.join(pwd, "resources"), "html")
+    os.rmdir(html_dir)
+    os.makedirs(html_dir)
 
     link = "https://markets.businessinsider.com"
     # faang => Meta (META) (formerly known as Facebook), Amazon (AMZN), Apple (AAPL), Netflix (NFLX); and Alphabet (GOOG) (formerly known as Google).

@@ -68,7 +68,7 @@ class ProcessModule:
         plt.ylabel("S&P %s Price Value" % cmpy_name)
         plt.legend(loc="upper right")
         plt.title("S&P %s Prediction using LSTM Model" % cmpy_name)
-        fig.savefig(path+'/resources/html/graph_lstm%s.svg' % name_append)     # saving the plot
+        fig.savefig(os.path.join(path, 'graph_lstm%s.svg' % name_append))     # saving the plot
         # plt.show()
         plt.close()
         return mse
@@ -120,7 +120,7 @@ class ProcessModule:
         plt.ylabel("S&P %s Price Value" % cmpy_name)
         plt.legend(loc="upper right")
         plt.title("S&P %s Prediction using Linear Regression Model" % cmpy_name)
-        fig.savefig(path+'/resources/html/graph_lr%s.svg' % name_append)     # saving the plot
+        fig.savefig(os.path.join(path, 'graph_lr%s.svg' % name_append))     # saving the plot
         # plt.show()
         plt.close()
         return mse
@@ -157,7 +157,7 @@ class ProcessModule:
         plt.ylabel("Correlation Coefficient")
         plt.title("S&P Statistical Analysis of Industrial Sectors using Spearman rank correlation coefficient")
         try:
-            fig.savefig(path+'/resources/html/graph_stat_src.svg')     # saving the plot
+            fig.savefig(os.path.join(path, 'graph_stat_src.svg'))     # saving the plot
         except:
             print("Error saving the graph")
         # plt.show()
@@ -183,7 +183,7 @@ class ProcessModule:
         plt.setp(ax1.get_xticklabels(), visible=False) if len(dataframe) >= 25 else print("Generating bar plot ...")  # disabling the chart labels
         plt.setp(ax2.get_xticklabels(), visible=False) if len(dataframe) >= 25 else print("Generating bar plot ...")  # disabling the chart labels
         plt.title("S&P Trend Analysis based on company performance - latest day")
-        fig.savefig(path+'/resources/html/graph_trend.svg')     # saving the plot
+        fig.savefig(os.path.join(path, 'graph_trend.svg'))     # saving the plot
         # plt.show()
         plt.close()
 
@@ -215,7 +215,7 @@ class ProcessModule:
         dataframe1 = CommonModule.dataframe_cast(dataframe1, 'LastUpdated', 'float64')
         dataframe1[['headline', 'url']] = dataframe1['NewsArticle'].str.split(' : ', expand=True)  # CompanyShortName
         html_table = dataframe1[['headline', 'url']].to_html()
-        text_file = open(path+"/resources/html/news_articles.html", "w")
+        text_file = open(os.path.join(path, "news_articles.html"), "w")
         text_file.write(html_table)
         text_file.close()
         sentiments_dict = {}
@@ -235,6 +235,6 @@ class ProcessModule:
         sentiment_dataframe = pd.DataFrame.from_dict(sentiments_dict, orient='index', columns=['Sentiment Analysis'])
         h_plt = sns.heatmap(sentiment_dataframe, linewidth=1, linecolor='white')  # cmap='coolwarm'
         h_plt.set_title("S&P Sentiments based on company News Articles")
-        h_plt.get_figure().savefig(path+'/resources/html/graph_senti.svg')     # saving the plot
+        h_plt.get_figure().savefig(os.path.join(path, 'graph_senti.svg'))     # saving the plot
         # plt.show()
         plt.close()

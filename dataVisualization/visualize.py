@@ -25,7 +25,7 @@ class VisualizeModule:
         plt.xticks(rotation=45)
         axis1.set_title('S&P 500 Companies Price Variance')     # setting the title of the graph
         plt.setp(axis1.get_xticklabels(), visible=False) if len(dataframe1) >= 25 else print("Generating scatter plot ...")  # disabling the chart labels
-        figure1.savefig(path+'/resources/html/graph_pv.svg')     # saving the plot
+        figure1.savefig(os.path.join(path, 'graph_pv.svg'))     # saving the plot
         # plt.show()
         plt.close()
 
@@ -36,7 +36,7 @@ class VisualizeModule:
         df = df.rename(columns={"CompanyName": "Company Name", "CompanyShortName": "Company Short Name", 'BuySellHold': 'Buy-Sell-Hold', 'LastUpdated': 'Current Price', '52WeekLow': '52-Week Low', '52WeekHigh': '52-Week High'})
         print(df.head(len(df)))
         html_table = df.set_index('Company Name').to_html()
-        text_file = open(path+"/resources/html/table.html", "w")
+        text_file = open(os.path.join(path, "table.html", "w"))
         text_file.write(html_table)
         text_file.close()
 
@@ -67,7 +67,7 @@ class VisualizeModule:
         axis2.set_ylabel("S&P Stock Price")     # updating the plot y-axis
         plt.xticks(rotation=45)
         figure2.legend(loc="upper right")     # moving the legend to upper right corner
-        figure2.savefig(path+'/resources/html/graph_sp.svg')
+        figure2.savefig(os.path.join(path, 'graph_sp.svg'))
         # plt.show()
         plt.close()
 
@@ -89,7 +89,7 @@ class VisualizeModule:
             axis3[1].set_ylabel("Stock Volume")     # updating the graph y-label
             figure3.subplots_adjust(hspace=0.4)     # increasing the distance between subplots
             figure3.legend(labels=df3_c2.columns.to_list(), loc="upper right")     # creating a common legend
-            figure3.savefig(path+'/resources/html/graph_sp_all.svg')
+            figure3.savefig(os.path.join(path, 'graph_sp_all.svg'))
             plt.xticks(rotation=45)
             # plt.show()
         else:
@@ -119,6 +119,6 @@ class VisualizeModule:
         for wedge, label in zip(wedges, dataframe['Sector'].tolist()):     # iterating for each color sector combo
             custom_legend[label] = axis.plot([], [], marker='s', markersize=10, linestyle='none', color=wedge.get_facecolor(), label=label)[0]     # manually assigning legend values
         figure.legend(title='SECTOR', loc='upper right', bbox_to_anchor=(1.0, 1.0), handles=list(custom_legend.values()))     # generating the legend
-        figure.savefig(path+'/resources/html/graph_pie.svg')     # saving the plot
+        figure.savefig(os.path.join(path, 'graph_pie.svg'))     # saving the plot
         # plt.show()     # plotting the graphs
         plt.close()

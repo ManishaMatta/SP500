@@ -16,8 +16,10 @@ def run():
 
     pwd = os.getcwd()  # "/Users/Manisha/Documents/github/ManishaMatta/SP500/"
     print("Current working directory", pwd)
-    os.system("rm -r -f %s/resources/html/*" % pwd)
-    os.system("mkdir %s/resources/html/" % pwd)
+    html_dir = os.path.join(os.path.join(pwd, "resources"), "html")
+    os.system("rm -r -f %s/*" % html_dir)
+    # os.rmdir(html_dir)
+    os.makedirs(html_dir) if not os.path.exists(html_dir) else print("Directory %s recreated for current run" % html_dir)
 
     print("**************************** DataSet 1-1 ****************************")
     sp_df11 = CommonModule.csv_reader("%s/resources/dataset11.csv" % pwd).set_index('CompanyName')
@@ -49,25 +51,25 @@ def run():
     sp_df4 = ProcessModule.process_df(sp_df3, sp_df11)
 
     print("Executing LSTM prediction model S&P 500...")
-    mse1 = ProcessModule.prediction_model_lstm(sp_df12, path=pwd)
+    mse1 = ProcessModule.prediction_model_lstm(sp_df12, path=html_dir)
     print("Executing LSTM prediction model Individual Companies...")
-    msec1 = ProcessModule.prediction_model_cmpy(sp_df13, 'lstm', path=pwd)
+    msec1 = ProcessModule.prediction_model_cmpy(sp_df13, 'lstm', path=html_dir)
     print("Executing LR prediction model S&P 500...")
-    mse2 = ProcessModule.prediction_model_lin(sp_df12, path=pwd)
+    mse2 = ProcessModule.prediction_model_lin(sp_df12, path=html_dir)
     print("Executing LR prediction model Individual Companies...")
-    msec2 = ProcessModule.prediction_model_cmpy(sp_df13, 'lin', path=pwd)
+    msec2 = ProcessModule.prediction_model_cmpy(sp_df13, 'lin', path=html_dir)
     mse = "Better precision is received by using LSTM model as Mean squared error is : "+str(round(mse1, 3)) if mse1 < mse2 else "Better precision is received by using Linear Regression model as Mean squared error is : "+str(round(mse2, 3))
 
     print("Executing Trend Analysis model...")
-    ProcessModule.trend_analysis(sp_df11, path=pwd)  # do for ds 13
-    VisualizeModule.visualize_sp(sp_df11, sp_df12, sp_df13, path=pwd)
+    ProcessModule.trend_analysis(sp_df11, path=html_dir)  # do for ds 13
+    VisualizeModule.visualize_sp(sp_df11, sp_df12, sp_df13, path=html_dir)
     print("Executing Correlation Statistical model...")
-    ProcessModule.statistical_model(sp_df4, path=pwd)  # add graph
-    VisualizeModule.visualize_src(sp_df4, path=pwd)
+    ProcessModule.statistical_model(sp_df4, path=html_dir)  # add graph
+    VisualizeModule.visualize_src(sp_df4, path=html_dir)
     print("Executing Sentiment Analysis...")
-    ProcessModule.sentiment_analysis(sp_df11, sp_df2, path=pwd)  # dataset - 11,2
+    ProcessModule.sentiment_analysis(sp_df11, sp_df2, path=html_dir)  # dataset - 11,2
     print("Generating the webpage...")
-    HTMLVisualize.publish_html(pwd, mse, (mse1, msec1, mse2, msec2))
+    HTMLVisualize.publish_html(pwd, html_dir, mse, (mse1, msec1, mse2, msec2))
 
 
 # start_time = datetime.now().strftime("%Y%m%d%H%M%S")
