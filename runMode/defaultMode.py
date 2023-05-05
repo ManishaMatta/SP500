@@ -17,7 +17,7 @@ def run(sp_cmpy=''):
     pd.set_option('display.max_columns', None)
     pd.set_option('display.width', None)
 
-    pwd = "/Users/Manisha/Documents/github/ManishaMatta/SP500/"  # os.getcwd()
+    pwd = os.getcwd()    #  "/Users/Manisha/Documents/github/ManishaMatta/SP500/"
     print("Current working directory", pwd)
     os.system("rm -r -f %s/resources/html/*" % pwd)
     os.system("mkdir %s/resources/html/" % pwd)
