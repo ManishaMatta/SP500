@@ -180,18 +180,18 @@ class HTMLVisualize:
         lr_tags = """<div class="row">"""
         lstm_tags = """<div class="row">"""
         for i in range(0, len(lr_file)):
-            f_path = file_path + lr_file[i]
+            f_path = os.path.join(file_path, lr_file[i])
             coll_tag = f"""<div class="column"><img src={f_path} alt="Correlation Analysis" style="width:90%;border: 2px solid black;"></div>"""
             lr_tags += coll_tag
-            f_path = file_path + lstm_file[i]
+            f_path = os.path.join(file_path, lstm_file[i])
             coll_tag = f"""<div class="column"><img src={f_path} alt="Correlation Analysis" style="width:90%;border: 2px solid black;"></div>"""
             lstm_tags += coll_tag
         lr_tags += """</div>"""
         lstm_tags += """</div>"""
-        text_file = open(file_path+"graph_lr.html", "w")
+        text_file = open(os.path.join(file_path, "graph_lr.html"), "w")
         text_file.write(lr_tags)
         text_file.close()
-        text_file = open(file_path+"graph_lstm.html", "w")
+        text_file = open(os.path.join(file_path, "graph_lstm.html"), "w")
         text_file.write(lstm_tags)
         text_file.close()
 
@@ -199,6 +199,6 @@ class HTMLVisualize:
     def publish_html(pwd, html_dir, mse, mse_all):
         # path = pwd+"/resources/html/"  # replace with your folder path
         HTMLVisualize.graph_scroll(html_dir)
-        with open(pwd+"output_file.html", 'w') as f:
+        with open(os.path.join(pwd, "output_file.html"), 'w') as f:
             f.write(HTMLVisualize.html_page(pwd, mse, mse_all))
-        webbrowser.open('file://' + pwd + "output_file.html")
+        webbrowser.open('file://' + os.path.join(pwd, "output_file.html"))
