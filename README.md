@@ -25,7 +25,7 @@ The codebase is present under the **Manisha_Radhakrishna_HW5/SP500** directory
      * html module -> ./dataVisualization/html.py [module used for generating output web page]
    * code resources
      * datasets -> ./resources/dataset*.csv [datasets used for static mode]
-     * outputs -> ./resources/output/<mode>/S&P_500_Analysis*.svg [analysis outputs from the codebase]
+     * outputs -> ./resources/output/<mode>/* [analysis outputs from the codebase]
      * logs -> ./resources/logs/<mode>.txt [execution logs in each mode]
      * pictures -> ./resources/pictures/flowchart.png [flowchart]
      * html -> ./resources/html/* [content used in the webpage]
