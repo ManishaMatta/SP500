@@ -8,7 +8,7 @@ The data is divided into multiple datasets to infer different correlation and pr
 
 **[GitHub link](https://github.com/ManishaMatta/SP500/tree/develop)**
 
-The codebase is present under the **Manisha_Radhakrishna_HW4/SP500** directory
+The codebase is present under the **Manisha_Radhakrishna_HW5/SP500** directory
    * main class -> ./snp500.py [start point of the project]
    * output HTML file -> ./output_file.html [project output webpage]
    * execution modes modules
@@ -94,7 +94,7 @@ Packages to be installed:
 
 ### V. Code Execution
 
-The code can be run in three modes: default, scrape and static. Please execute the commands preferably from the module directory [**Manisha_Radhakrishna_HW4/SP500**]
+The code can be run in three modes: default, scrape and static. Please execute the commands preferably from the module directory [**Manisha_Radhakrishna_HW5/SP500**]
 The output analysis webpage pops-up after the code execution, and charts are also saved in the **../resource/html/** directory for future reference.
 We can open the file **./output_file.html** path like `file:///<run_path>/output_file.html` on **Google Chrome** full screen for better visibility.
 
